@@ -43,6 +43,9 @@ dword_t sys_access(addr_t path_addr, dword_t mode) {
     return sys_faccessat(AT_FDCWD_, path_addr, mode, 0);
 }
 dword_t sys_faccessat(fd_t at_f, addr_t path_addr, mode_t_ mode, dword_t flags) {
+    return sys_faccessat2(at_f, path_addr, mode, 0);
+}
+dword_t sys_faccessat2(fd_t at_f, addr_t path_addr, mode_t_ mode, dword_t flags) {
     char path[MAX_PATH];
     if (user_read_string(path_addr, path, sizeof(path)))
         return _EFAULT;
